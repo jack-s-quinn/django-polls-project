@@ -1,3 +1,20 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+{% if returning_visitor %}
+    <h1> Welcome back to The Polls application.</h1>
+{% else %}
+    <h1> Welcome to the Polls application.</h1>
+{% endif%}
+<p>You have visited this page {{ visit_count }} times.</p>
+{% if last_poll %}
+    <p>Last poll viewed:
+        <a href="{% url 'polls:detail' last_poll.id %}">{{ last_poll.question_text }}</a>
+    </p>
+{% else %}
+    <p>Last poll viewed: NONE </a>
+    </p>
+{% endif %}
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
